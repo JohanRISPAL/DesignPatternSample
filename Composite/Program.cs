@@ -1,50 +1,17 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Composite;
+using Composite.Manager;
 
-Console.WriteLine("Hello, World!");
+var consoleManager = new ConsoleManager();
 
-Inventory inventory = new Inventory();
+consoleManager.PrintApplicationTitle();
 
-Knife knife = new Knife("Couteau à beurre");
-Knife knife2 = new Knife("Couteau à fromage");
-Knife knife3 = new Knife("Couteau à couille");
+bool userContinue = true;
 
-inventory.AddWeaponInInventory(knife);
-inventory.AddWeaponInInventory(knife2);
-inventory.AddWeaponInInventory(knife3);
-
-HealthPotion healthPotion = new HealthPotion("Potion de vie");
-HealthPotion healthPotion2 = new HealthPotion("Potion de vie II");
-
-inventory.AddConsumableInInventory(healthPotion);
-inventory.AddConsumableInInventory(healthPotion2);
-
-inventory.DisplayName();
-
-inventory.RemoveWeaponFromInventory(knife);
-
-Console.WriteLine("==============================");
-
-inventory.DisplayName();
-
-Console.WriteLine("==============================");
-Console.WriteLine("Liste des armes : ");
-List<IInventoryItem> weaponsSorted = new List<IInventoryItem>();
-
-inventory.LoadWeaponList(weaponsSorted);
-
-foreach(var weapon in weaponsSorted)
+do
 {
-    weapon.DisplayName();
-}
+    string userAction = consoleManager.PrintMenu();
 
-Console.WriteLine("==============================");
-Console.WriteLine("Liste des consomables : ");
-List<IInventoryItem> consumablesSorted = new List<IInventoryItem>();
-
-inventory.LoadConsumableList(consumablesSorted);
-
-foreach (var consumable in consumablesSorted)
-{
-    consumable.DisplayName();
-}
+    userContinue = consoleManager.ManageUserAction(userAction);
+    
+} while (userContinue);

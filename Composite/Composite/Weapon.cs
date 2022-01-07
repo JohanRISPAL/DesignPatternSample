@@ -72,5 +72,10 @@ namespace Composite
                 component.Load(itemsList);
             }
         }
+
+        public void LoadBladeWeapon(List<IInventoryItem> itemsList)
+        {
+            _bladeWeapons.Load(itemsList);
+        }
     }
 }
