@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Composite.Composite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,12 @@ namespace Composite
 
         private List<IInventoryItem> _weapons;
 
+        private BladeWeapon _bladeWeapons = new BladeWeapon();
+
         internal Weapon()
         {
             _weapons = new List<IInventoryItem>();
+            _weapons.Add(_bladeWeapons);
         }
 
         public void DisplayName()
@@ -50,7 +54,10 @@ namespace Composite
 
         internal void AddWeapon(IInventoryItem weaponToAdd)
         {
-            _weapons.Add(weaponToAdd);
+            if (weaponToAdd.GetType().IsSubclassOf(typeof(BladeWeapon)))
+            {
+                _bladeWeapons.AddBladeWeapon(weaponToAdd);
+            }
         }
 
         internal void RemoveWeapon(IInventoryItem weaponToDelete)
