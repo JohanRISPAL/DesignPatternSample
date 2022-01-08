@@ -22,6 +22,11 @@ namespace Composite
             _weapons.Add(_bluntWeapon);
         }
 
+        public List<IInventoryItem> Weapons
+        {
+            get => _weapons;
+        }
+
         public void DisplayName()
         {
             foreach(var weapon in _weapons)

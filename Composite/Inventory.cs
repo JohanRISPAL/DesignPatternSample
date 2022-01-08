@@ -36,6 +36,16 @@ namespace Composite
             }
         }
 
+        internal void DisplayWeaponName()
+        {
+            Console.WriteLine($"Charge totale de l'inventaire : {GetTotalWeightOfInventory()}/100");
+            foreach(var weapon in _weaponComposite.Weapons)
+            {
+                Console.WriteLine($"{weapon.GetType().Name} : ");
+                weapon.DisplayName();
+            }
+        }
+
         internal void AddWeaponInInventory(IInventoryItem weaponToAdd)
         {
             if(GetTotalWeightOfInventory() + weaponToAdd.GetWeight() < 100)
